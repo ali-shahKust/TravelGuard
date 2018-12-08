@@ -1,18 +1,16 @@
 package com.whatsclone.muhammadfaizan.travelguard.Model;
 
-import android.support.annotation.Nullable;
-
 public class LoginModel implements ILoginModel {
     private String userName;
     private String userPass;
-    private String  rePass;
+    private String rePass;
 
     public LoginModel(String userName, String userPass) {
         this.userName = userName;
         this.userPass = userPass;
     }
 
-    public LoginModel(String userName, String userPass, String rePass){
+    public LoginModel(String userName, String userPass, String rePass) {
         this.userName = userName;
         this.userPass = userPass;
         this.rePass = rePass;
@@ -26,14 +24,15 @@ public class LoginModel implements ILoginModel {
         return this.userPass;
     }
 
-    private String getRePass(){
+    private String getRePass() {
         return this.rePass;
     }
 
 
     @Override
     public boolean validateSigninCredentials() {
-        if (!getUserName().equals("") && !getUserPass().equals("") && getUserName().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$") && getUserPass().length() >= 6) {
+        if (!getUserName().equals("") && !getUserPass().equals("") && getUserPass().length() >= 6
+                && getUserName().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
             return true;
         } else {
             return false;
@@ -42,8 +41,8 @@ public class LoginModel implements ILoginModel {
 
     @Override
     public boolean validateRegisterCredentials() {
-        if (!getUserName().equals("") && !getUserPass().equals("") && !getRePass().equals("")
-                && getUserName().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$") && getUserPass().length() >= 6) {
+        if (!getUserName().equals("") && !getUserPass().equals("") && !getRePass().equals("") && getUserPass().length() >= 6
+                && getRePass().equals(getUserPass()) && getUserName().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$")) {
             return true;
         } else {
             return false;
