@@ -20,7 +20,7 @@ public class LoginModel implements ILoginModel {
 
     @Override
     public boolean validateCredentials() {
-        if (!getUserName().equals("") && !getUserPass().equals("") && getUserName().matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$") && getUserPass().length() >= 6) {
+        if (!getUserName().equals("") && !getUserPass().equals("") && getUserName().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$") && getUserPass().length() >= 6) {
             return true;
         } else {
             return false;
