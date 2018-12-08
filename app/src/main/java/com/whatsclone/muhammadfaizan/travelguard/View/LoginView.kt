@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.whatsclone.muhammadfaizan.travelguard.Presenter.ILoginPresenter
 import com.whatsclone.muhammadfaizan.travelguard.Presenter.LoginPresenter
 import com.whatsclone.muhammadfaizan.travelguard.R
+import es.dmoral.toasty.Toasty
 
 class LoginView : AppCompatActivity(), ILoginView {
 
@@ -22,9 +23,9 @@ class LoginView : AppCompatActivity(), ILoginView {
 
     override fun onLoginResult(result : String) {
         if (result.equals("success")){
-            Toast.makeText(this@LoginView, "Success", Toast.LENGTH_SHORT).show()
+            Toasty.success(this, "Valid Credentials", Toast.LENGTH_LONG, true).show()
         } else{
-            Toast.makeText(this@LoginView, "Failed", Toast.LENGTH_SHORT).show()
+            Toasty.error(this, "Invalid Credentials", Toast.LENGTH_LONG, true).show()
         }
     }
 }
