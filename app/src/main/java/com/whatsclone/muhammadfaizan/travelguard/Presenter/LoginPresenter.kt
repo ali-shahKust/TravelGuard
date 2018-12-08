@@ -8,8 +8,8 @@ class LoginPresenter constructor(iLoginView : ILoginView) : ILoginPresenter{
     var iLoginView : ILoginView = iLoginView
     var iLoginModel : ILoginModel? = null
 
-    override fun onLoginInitiated(userName : String, userPass : String, userPassReesnter : String){
-        iLoginModel = LoginModel(userName, userPass, userPassReesnter)
+    override fun onLoginInitiated(userName : String, userPass : String){
+        iLoginModel = LoginModel(userName, userPass)
         if (iLoginModel!!.validateCredentials()) {
             iLoginView.onLoginResult("success")
         } else {
