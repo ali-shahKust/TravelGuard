@@ -1,5 +1,21 @@
 package com.whatsclone.muhammadfaizan.travelguard.Presenter
-class LoginPresenter {
+
+import com.whatsclone.muhammadfaizan.travelguard.Model.ILoginModel
+import com.whatsclone.muhammadfaizan.travelguard.Model.LoginModel
+import com.whatsclone.muhammadfaizan.travelguard.View.ILoginView
+
+class LoginPresenter constructor(iLoginView : ILoginView) : ILoginPresenter{
+    var iLoginView : ILoginView = iLoginView
+    var iLoginModel : ILoginModel? = null
+
+    override fun onLoginInitiated(userName : String, userPass : String, userPassReesnter : String){
+        iLoginModel = LoginModel(userName, userPass, userPassReesnter)
+        if (iLoginModel!!.validateCredentials()) {
+            iLoginView.onLoginResult("success")
+        } else {
+            iLoginView.onLoginResult("fail")
+        }
+     }
 
 }
 
