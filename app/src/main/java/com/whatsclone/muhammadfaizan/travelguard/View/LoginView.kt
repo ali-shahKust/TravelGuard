@@ -1,5 +1,6 @@
 package com.whatsclone.muhammadfaizan.travelguard.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -17,6 +18,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     lateinit var edtUsername: EditText
     lateinit var edtPass: EditText
     lateinit var btnSignin: Button
+    lateinit var btnRegister: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
@@ -29,15 +31,22 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
         edtUsername = findViewById(R.id.edtUserName)
         edtPass = findViewById(R.id.edtUserPass)
         btnSignin = findViewById(R.id.btnSignin)
+        btnRegister = findViewById(R.id.btnGoBack)
 
     }
 
     private fun setListener() {
         btnSignin.setOnClickListener(this)
+        btnRegister.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        iLoginPresenter.onLoginInitiated(edtUsername.text.toString(), edtPass.text.toString())
+        if (v!!.id == R.id.btnSignin) {
+            iLoginPresenter.onLoginInitiated(edtUsername.text.toString(), edtPass.text.toString(), null)
+        } else {
+            startActivity(Intent(this@LoginView, RegistrationActivity::class.java))
+            this@LoginView.finish()
+        }
     }
 
     override fun onLoginResult(result: String) {

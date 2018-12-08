@@ -1,5 +1,6 @@
 package com.whatsclone.muhammadfaizan.travelguard.Model;
 
 public interface ILoginModel {
-    boolean validateCredentials();
+    boolean validateSigninCredentials();
+    boolean validateRegisterCredentials();
 }

@@ -8,13 +8,22 @@ class LoginPresenter constructor(iLoginView: ILoginView) : ILoginPresenter {
     var iLoginView: ILoginView = iLoginView
     var iLoginModel: ILoginModel? = null
 
-    override fun onLoginInitiated(userName: String, userPass: String) {
-        iLoginModel = LoginModel(userName, userPass)
-        if (iLoginModel!!.validateCredentials()) {
-            iLoginView.onLoginResult("success")
-        } else {
-            iLoginView.onLoginResult("fail")
-        }
+    override fun onLoginInitiated(userName: String, userPass: String, rePass : String?) {
+       if (rePass == null) {
+           iLoginModel = LoginModel(userName, userPass)
+           if (iLoginModel!!.validateSigninCredentials()) {
+               iLoginView.onLoginResult("success")
+           } else {
+               iLoginView.onLoginResult("fail")
+           }
+       } else {
+           iLoginModel = LoginModel(userName, userPass, rePass)
+           if (iLoginModel!!.validateRegisterCredentials()) {
+               iLoginView.onLoginResult("success")
+           } else {
+               iLoginView.onLoginResult("fail")
+           }
+       }
     }
 
 }
