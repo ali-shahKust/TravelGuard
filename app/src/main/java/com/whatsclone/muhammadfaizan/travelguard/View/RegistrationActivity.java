@@ -31,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
-        loginPresenter = new LoginPresenter(RegistrationActivity.this);
+        loginPresenter = new LoginPresenter(RegistrationActivity.this, RegistrationActivity.this);
     }
 
     @OnClick({R.id.btnRegister, R.id.btnGoBack})
@@ -46,8 +46,10 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
 
     @Override
     public void onLoginResult(@NotNull String result) {
+        String rslt = "";
         if (result.equals("success")) {
-            Toasty.success(this, "Registration Successful", Toast.LENGTH_SHORT, true).show();
+            Toasty.success(this, "Valid Entry", Toast.LENGTH_SHORT, true).show();
+            rslt = loginPresenter.authenticateUser("register", edtList.get(0).getText().toString(), edtList.get(1).getText().toString());
         } else {
             Toasty.error(this, "Registration Failed", Toast.LENGTH_SHORT, true).show();
         }

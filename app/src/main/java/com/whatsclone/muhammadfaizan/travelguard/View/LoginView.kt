@@ -27,7 +27,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     }
 
     private fun initViews() {
-        iLoginPresenter = LoginPresenter(this@LoginView)
+        iLoginPresenter = LoginPresenter(this@LoginView, this)
         edtUsername = findViewById(R.id.edtUserName)
         edtPass = findViewById(R.id.edtUserPass)
         btnSignin = findViewById(R.id.btnSignin)
@@ -50,8 +50,10 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     }
 
     override fun onLoginResult(result: String) {
+        var rslt : String = ""
         if (result == "success") {
             Toasty.success(this, "Valid Credentials", Toast.LENGTH_SHORT, true).show()
+            rslt = iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
             Toasty.error(this, "Invalid Credentials", Toast.LENGTH_SHORT, true).show()
         }
