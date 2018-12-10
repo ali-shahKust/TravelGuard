@@ -12,7 +12,8 @@ class SplashScreen : Activity(), TaskCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         progressBar = findViewById(R.id.myProgressBar)
-        var backgroundTask = BackgroundTask(progressBar, this, this@SplashScreen)
+        var backgroundTask = BackgroundTask(this, progressBar, this@SplashScreen)
+        backgroundTask.execute()
     }
 
     override fun CallBack() {
