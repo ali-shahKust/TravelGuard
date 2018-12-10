@@ -50,12 +50,12 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     }
 
     override fun onLoginResult(result: String) {
-        var rslt : String = ""
+        var rslt: String = ""
         if (result == "success") {
-            Toasty.success(this, "Valid Credentials", Toast.LENGTH_SHORT, true).show()
+            Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show()
             rslt = iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
-            Toasty.error(this, "Invalid Credentials", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show()
         }
     }
 }

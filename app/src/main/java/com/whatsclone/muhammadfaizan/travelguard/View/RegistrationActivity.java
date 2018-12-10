@@ -48,10 +48,10 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
     public void onLoginResult(@NotNull String result) {
         String rslt = "";
         if (result.equals("success")) {
-            Toasty.success(this, "Valid Entry", Toast.LENGTH_SHORT, true).show();
+            Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show();
             rslt = loginPresenter.authenticateUser("register", edtList.get(0).getText().toString(), edtList.get(1).getText().toString());
         } else {
-            Toasty.error(this, "Registration Failed", Toast.LENGTH_SHORT, true).show();
+            Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show();
         }
     }
 }
