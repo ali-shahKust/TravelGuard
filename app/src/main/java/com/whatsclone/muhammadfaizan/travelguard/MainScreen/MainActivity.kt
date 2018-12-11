@@ -1,7 +1,7 @@
 package com.whatsclone.muhammadfaizan.travelguard.MainScreen
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
 
 class MainActivity : AppCompatActivity() {

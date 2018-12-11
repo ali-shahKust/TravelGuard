@@ -9,12 +9,11 @@ import android.view.ViewGroup
 
 import com.whatsclone.muhammadfaizan.travelguard.R
 
-class FriendsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var view: View = inflater.inflate(R.layout.fragment_friends, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
         return view
     }
-
 }
