@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.widget.ProgressBar
+import com.google.firebase.auth.FirebaseAuth
+import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.View.LoginView
 import java.lang.Thread.sleep
 
 class BackgroundTask internal constructor(internal var context: Context, internal var progressBar: ProgressBar, internal var callbackObj: TaskCallback) : AsyncTask<Void, Int, String>() {
+
     override fun doInBackground(vararg voids: Void): String {
         synchronized(this) {
             var i = 1
@@ -27,13 +30,19 @@ class BackgroundTask internal constructor(internal var context: Context, interna
         return "str"
     }
 
-    protected override fun onProgressUpdate(vararg values: Int?) {
+    override fun onProgressUpdate(vararg values: Int?) {
         progressBar.progress = values[0]!!
     }
 
     override fun onPostExecute(aVoid: String) {
-        val intent = Intent(context, LoginView::class.java)
-        context.startActivity(intent)
-        callbackObj.CallBack()
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+            callbackObj.CallBack()
+        }
+        else {
+            val intent = Intent(context, LoginView::class.java)
+            context.startActivity(intent)
+            callbackObj.CallBack()
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.Presenter.ILoginPresenter
 import com.whatsclone.muhammadfaizan.travelguard.Presenter.LoginPresenter
 import com.whatsclone.muhammadfaizan.travelguard.R
@@ -50,12 +51,18 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     }
 
     override fun onLoginResult(result: String) {
-        var rslt: String = ""
         if (result == "success") {
             Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show()
-            rslt = iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
+            iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
             Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show()
+        }
+    }
+
+    override fun firebaseResponse(result: String) {
+        if (result == "success") {
+            startActivity(Intent(this@LoginView, MainActivity::class.java))
+            finish()
         }
     }
 }

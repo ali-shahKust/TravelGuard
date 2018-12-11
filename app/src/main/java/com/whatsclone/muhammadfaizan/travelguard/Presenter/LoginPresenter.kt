@@ -9,32 +9,31 @@ import com.whatsclone.muhammadfaizan.travelguard.Model.LoginModel
 import com.whatsclone.muhammadfaizan.travelguard.View.ILoginView
 import es.dmoral.toasty.Toasty
 
-class LoginPresenter constructor(iLoginView: ILoginView, context : Context) : ILoginPresenter {
+class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILoginPresenter {
 
     var iLoginView: ILoginView = iLoginView
     var iLoginModel: ILoginModel? = null
-    var context : Context = context
+    var context: Context = context
 
-    override fun onLoginInitiated(userName: String, userPass: String, rePass : String?) {
-       if (rePass == null) {
-           iLoginModel = LoginModel(userName, userPass)
-           if (iLoginModel!!.validateSigninCredentials()) {
-               iLoginView.onLoginResult("success")
-           } else {
-               iLoginView.onLoginResult("fail")
-           }
-       } else {
-           iLoginModel = LoginModel(userName, userPass, rePass)
-           if (iLoginModel!!.validateRegisterCredentials()) {
-               iLoginView.onLoginResult("success")
-           } else {
-               iLoginView.onLoginResult("fail")
-           }
-       }
+    override fun onLoginInitiated(userName: String, userPass: String, rePass: String?) {
+        if (rePass == null) {
+            iLoginModel = LoginModel(userName, userPass)
+            if (iLoginModel!!.validateSigninCredentials()) {
+                iLoginView.onLoginResult("success")
+            } else {
+                iLoginView.onLoginResult("fail")
+            }
+        } else {
+            iLoginModel = LoginModel(userName, userPass, rePass)
+            if (iLoginModel!!.validateRegisterCredentials()) {
+                iLoginView.onLoginResult("success")
+            } else {
+                iLoginView.onLoginResult("fail")
+            }
+        }
     }
 
-    override fun authenticateUser(flag : String, email : String, pass : String): String {
-        var result : String = ""
+    override fun authenticateUser(flag: String, email: String, pass: String) {
         if (flag == "register") {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -43,29 +42,26 @@ class LoginPresenter constructor(iLoginView: ILoginView, context : Context) : IL
                     map["password"] = pass
                     FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance()!!.uid.toString()).setValue(map).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toasty.success(context, "User created successfully", Toast.LENGTH_SHORT, true).show()
-                            result = "success"
+                            iLoginView.firebaseResponse("success")
                         } else {
                             Toasty.error(context, "User creation error", Toast.LENGTH_SHORT, true).show()
-                            result = task.exception!!.message.toString()
                         }
                     }
                 } else {
                     Toasty.error(context, "User creation error", Toast.LENGTH_SHORT, true).show()
-                    result = task.exception!!.message.toString()
                 }
             }
         } else {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toasty.success(context, "Signin Success", Toast.LENGTH_SHORT, true).show()
-                    result = "success"
+                    iLoginView.firebaseResponse("success")
                 } else {
-                    result = task.exception!!.message.toString()
+                    Toasty.error(context, task.exception?.message.toString(), Toast.LENGTH_LONG, true).show()
                 }
             }
+
         }
-        return result
+
     }
 }
 
