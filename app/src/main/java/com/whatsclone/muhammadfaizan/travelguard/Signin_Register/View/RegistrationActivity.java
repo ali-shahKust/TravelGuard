@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile;
+import com.whatsclone.muhammadfaizan.travelguard.R;
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.ILoginPresenter;
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.LoginPresenter;
-import com.whatsclone.muhammadfaizan.travelguard.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -57,6 +58,9 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
 
     @Override
     public void firebaseResponse(@NotNull String result) {
-
+        if (result.equals("success")) {
+            startActivity(new Intent(RegistrationActivity.this, ActivityEditUserProfile.class));
+            finish();
+        }
     }
 }

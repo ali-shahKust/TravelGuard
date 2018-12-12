@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.Contracts.MainContract
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.Presenter.Presenter
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
@@ -68,7 +67,8 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
 
     override fun onFirebaseResult(result: Boolean, message: String) {
         if (result) {
-            Toasty.success(this@ActivityEditUserProfile, "Success", Toast.LENGTH_SHORT, true).show()
+            startActivity(Intent(this@ActivityEditUserProfile, MainActivity::class.java))
+            this@ActivityEditUserProfile.finish()
         } else {
             Toasty.error(this@ActivityEditUserProfile, message, Toast.LENGTH_LONG, true).show()
         }
