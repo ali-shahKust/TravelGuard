@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard.Model;
+package com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Model;
 
 public class LoginModel implements ILoginModel {
     private String userName;

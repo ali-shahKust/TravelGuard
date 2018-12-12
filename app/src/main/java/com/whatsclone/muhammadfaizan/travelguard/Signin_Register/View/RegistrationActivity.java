@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard.View;
+package com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.whatsclone.muhammadfaizan.travelguard.Presenter.ILoginPresenter;
-import com.whatsclone.muhammadfaizan.travelguard.Presenter.LoginPresenter;
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.ILoginPresenter;
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.LoginPresenter;
 import com.whatsclone.muhammadfaizan.travelguard.R;
 
 import org.jetbrains.annotations.NotNull;

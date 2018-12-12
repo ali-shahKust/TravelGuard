@@ -1,12 +1,12 @@
-package com.whatsclone.muhammadfaizan.travelguard.Presenter
+package com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter
 
 import android.content.Context
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.whatsclone.muhammadfaizan.travelguard.Model.ILoginModel
-import com.whatsclone.muhammadfaizan.travelguard.Model.LoginModel
-import com.whatsclone.muhammadfaizan.travelguard.View.ILoginView
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Model.ILoginModel
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Model.LoginModel
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View.ILoginView
 import es.dmoral.toasty.Toasty
 
 class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILoginPresenter {

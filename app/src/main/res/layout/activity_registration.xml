@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
     android:padding="16dp"
-    tools:context=".View.LoginView">
+    tools:context=".Signin_Register.View.LoginView">
 
     <ImageView
         android:src="@drawable/app_logo"

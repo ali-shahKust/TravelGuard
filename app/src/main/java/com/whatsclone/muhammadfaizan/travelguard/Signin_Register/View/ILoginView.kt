@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard.View
+package com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View
 
 interface ILoginView {
     fun onLoginResult(result: String)

@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard.PackageSplashScreen
+package com.whatsclone.muhammadfaizan.travelguard.SplashScreen
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,7 @@ import android.os.AsyncTask
 import android.widget.ProgressBar
 import com.google.firebase.auth.FirebaseAuth
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile
-import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
-import com.whatsclone.muhammadfaizan.travelguard.View.LoginView
+import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View.LoginView
 import java.lang.Thread.sleep
 
 class BackgroundTask internal constructor(internal var context: Context, internal var progressBar: ProgressBar, internal var callbackObj: TaskCallback) : AsyncTask<Void, Int, String>() {

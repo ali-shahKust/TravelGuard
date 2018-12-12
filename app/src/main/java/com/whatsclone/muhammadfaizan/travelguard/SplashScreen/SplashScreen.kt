@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard.PackageSplashScreen
+package com.whatsclone.muhammadfaizan.travelguard.SplashScreen
 
 import android.app.Activity
 import android.os.Bundle

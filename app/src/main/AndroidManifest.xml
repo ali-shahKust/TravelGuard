@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".View.LoginView"
+            android:name=".Signin_Register.View.LoginView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.RegistrationActivity"
+            android:name=".Signin_Register.View.RegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PackageSplashScreen.SplashScreen"
+            android:name=".SplashScreen.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
