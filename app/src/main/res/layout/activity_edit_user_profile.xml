@@ -27,14 +27,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:text="Please provide your user name and profile pictures\nTap on the image on the left to open gallery"
+        android:text="Please provide your single line user name and profile pictures. Tap on the image on the left to open gallery"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -44,11 +45,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="8dp"
+        android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="bottom"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -63,11 +64,12 @@
             android:id="@+id/edt_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
             android:layout_marginStart="8dp"
+            android:backgroundTint="#ffffff"
             android:hint="User name"
-            android:backgroundTint="#ffffff"/>
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
     </LinearLayout>
 
     <Button
