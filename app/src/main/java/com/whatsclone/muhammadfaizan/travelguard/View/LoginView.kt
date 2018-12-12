@@ -15,11 +15,11 @@ import es.dmoral.toasty.Toasty
 
 class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
 
-    lateinit var iLoginPresenter: ILoginPresenter
-    lateinit var edtUsername: EditText
-    lateinit var edtPass: EditText
-    lateinit var btnSignin: Button
-    lateinit var btnRegister: Button
+    private lateinit var iLoginPresenter: ILoginPresenter
+    private lateinit var edtUsername: EditText
+    private lateinit var edtPass: EditText
+    private lateinit var btnSignin: Button
+    private lateinit var btnRegister: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)

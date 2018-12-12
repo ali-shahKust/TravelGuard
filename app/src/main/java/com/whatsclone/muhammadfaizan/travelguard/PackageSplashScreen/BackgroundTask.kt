@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.widget.ProgressBar
 import com.google.firebase.auth.FirebaseAuth
+import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.View.LoginView
 import java.lang.Thread.sleep
@@ -36,7 +37,7 @@ class BackgroundTask internal constructor(internal var context: Context, interna
 
     override fun onPostExecute(aVoid: String) {
         if (FirebaseAuth.getInstance().currentUser != null) {
-            context.startActivity(Intent(context, MainActivity::class.java))
+            context.startActivity(Intent(context, ActivityEditUserProfile::class.java))
             callbackObj.CallBack()
         }
         else {

@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var friends: FriendsFragment
-    lateinit var people: PeopleFragment
-    lateinit var profile: ProfileFragment
-    lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var friends: FriendsFragment
+    private lateinit var people: PeopleFragment
+    private lateinit var profile: ProfileFragment
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

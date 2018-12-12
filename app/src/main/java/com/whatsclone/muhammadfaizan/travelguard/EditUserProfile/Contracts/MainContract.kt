@@ -9,10 +9,11 @@ interface MainContract {
 
     interface IView {
         fun onSaveClickResult(result: Boolean)
-        fun onFirebaseResult(result : String)
+        fun onFirebaseResult(result : Boolean, message : String)
     }
 
     interface IPresenter {
-        fun onSaveClicked(uri: Uri, userName: String)
+        fun onSaveClicked(uri: String, userName: String)
+        fun saveUserToFB()
     }
 }

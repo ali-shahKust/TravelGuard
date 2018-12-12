@@ -11,9 +11,9 @@ import es.dmoral.toasty.Toasty
 
 class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILoginPresenter {
 
-    var iLoginView: ILoginView = iLoginView
-    var iLoginModel: ILoginModel? = null
-    var context: Context = context
+    private var iLoginView: ILoginView = iLoginView
+    private var iLoginModel: ILoginModel? = null
+    private var context: Context = context
 
     override fun onLoginInitiated(userName: String, userPass: String, rePass: String?) {
         if (rePass == null) {

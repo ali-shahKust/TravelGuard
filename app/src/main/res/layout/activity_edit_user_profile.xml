@@ -29,7 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:text="Please provide your single line user name and profile pictures. Tap on the image on the left to open gallery"
+        android:text="Please provide your user name and profile pictures. Tap on the image on the left to open gallery"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="15dp"

@@ -7,7 +7,7 @@ import com.whatsclone.muhammadfaizan.travelguard.R
 
 class SplashScreen : Activity(), TaskCallback {
 
-    lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
