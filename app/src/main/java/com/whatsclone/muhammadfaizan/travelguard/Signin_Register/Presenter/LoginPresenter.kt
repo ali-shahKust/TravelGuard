@@ -45,10 +45,12 @@ class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILo
                             iLoginView.firebaseResponse("success")
                         } else {
                             Toasty.error(context, "User creation error", Toast.LENGTH_SHORT, true).show()
+                            iLoginView.hideProgress()
                         }
                     }
                 } else {
                     Toasty.error(context, "User creation error", Toast.LENGTH_SHORT, true).show()
+                    iLoginView.hideProgress()
                 }
             }
         } else {
@@ -56,6 +58,7 @@ class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILo
                 if (task.isSuccessful) {
                     iLoginView.firebaseResponse("success")
                 } else {
+                    iLoginView.hideProgress()
                     Toasty.error(context, task.exception?.message.toString(), Toast.LENGTH_LONG, true).show()
                 }
             }

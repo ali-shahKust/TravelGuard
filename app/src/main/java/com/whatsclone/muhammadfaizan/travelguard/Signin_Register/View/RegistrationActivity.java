@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,6 +28,8 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
     private ILoginPresenter loginPresenter;
     @BindViews({R.id.edtUserName, R.id.edtUserPass, R.id.edtUserPassReenter})
     List<EditText> edtList;
+    @BindView(R.id.activity_registration_progress)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +66,16 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
             startActivity(new Intent(RegistrationActivity.this, ActivityEditUserProfile.class));
             finish();
         }
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

@@ -6,11 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
+import com.whatsclone.muhammadfaizan.travelguard.R
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.ILoginPresenter
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.Presenter.LoginPresenter
-import com.whatsclone.muhammadfaizan.travelguard.R
 import es.dmoral.toasty.Toasty
 
 class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
@@ -20,6 +21,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     private lateinit var edtPass: EditText
     private lateinit var btnSignin: Button
     private lateinit var btnRegister: Button
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
@@ -33,6 +35,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
         edtPass = findViewById(R.id.edtUserPass)
         btnSignin = findViewById(R.id.btnSignin)
         btnRegister = findViewById(R.id.btnGoBack)
+        progressBar = findViewById(R.id.activity_login_progress)
 
     }
 
@@ -44,6 +47,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
     override fun onClick(v: View?) {
         if (v!!.id == R.id.btnSignin) {
             iLoginPresenter.onLoginInitiated(edtUsername.text.toString(), edtPass.text.toString(), null)
+            progressBar.visibility = View.VISIBLE
         } else {
             startActivity(Intent(this@LoginView, RegistrationActivity::class.java))
             this@LoginView.finish()
@@ -55,6 +59,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
             Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show()
             iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
+            progressBar.visibility = View.INVISIBLE
             Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show()
         }
     }
@@ -64,5 +69,14 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
             startActivity(Intent(this@LoginView, MainActivity::class.java))
             finish()
         }
+    }
+
+    override fun hideProgress() {
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    override fun onStart() {
+        super.onStart()
+        progressBar.visibility = View.INVISIBLE
     }
 }
