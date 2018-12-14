@@ -15,6 +15,7 @@ import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
 import de.hdodenhof.circleimageview.CircleImageView
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.activity_registration.*
 
 class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.OnClickListener {
 
@@ -50,7 +51,8 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
                 this.finish()
             }
             R.id.btn_save -> {
-                v.isEnabled = false
+                btnSave.isEnabled = false
+                btnLater.isEnabled = false
                 progressBar.visibility = View.VISIBLE
                 presenter.onSaveClicked(uri, edtUserName.text.toString())
             }
@@ -91,6 +93,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
     override fun hideProgress() {
         progressBar.visibility = View.INVISIBLE
         btnSave.isEnabled = true
+        btnRegister.isEnabled = true
     }
 
     override fun onStart() {
