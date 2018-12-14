@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,7 +21,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
 public class RegistrationActivity extends AppCompatActivity implements ILoginView {
@@ -30,6 +30,8 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
     List<EditText> edtList;
     @BindView(R.id.activity_registration_progress)
     ProgressBar progressBar;
+    @BindViews({R.id.btnRegister, R.id.btnGoBack})
+    List<Button> btnList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +39,27 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
         loginPresenter = new LoginPresenter(RegistrationActivity.this, RegistrationActivity.this);
+        setListeners();
     }
 
-    @OnClick({R.id.btnRegister, R.id.btnGoBack})
-    void buttonListener(View v) {
-        if (v.getId() == R.id.btnRegister) {
-            progressBar.setVisibility(View.VISIBLE);
-            loginPresenter.onLoginInitiated(edtList.get(0).getText().toString(), edtList.get(1).getText().toString(), edtList.get(2).getText().toString());
-        } else {
-            startActivity(new Intent(RegistrationActivity.this, LoginView.class));
-            RegistrationActivity.this.finish();
-        }
+    private void setListeners() {
+        btnList.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnList.get(0).setEnabled(false);
+                btnList.get(1).setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
+                loginPresenter.onLoginInitiated(edtList.get(0).getText().toString(), edtList.get(1).getText().toString(), edtList.get(2).getText().toString());
+            }
+        });
+
+        btnList.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistrationActivity.this, LoginView.class));
+                RegistrationActivity.this.finish();
+            }
+        });
     }
 
     @Override
@@ -57,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
             Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show();
             loginPresenter.authenticateUser("register", edtList.get(0).getText().toString(), edtList.get(1).getText().toString());
         } else {
-            progressBar.setVisibility(View.INVISIBLE);
+            hideProgress();
             Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show();
         }
     }
@@ -72,6 +84,9 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
 
     @Override
     public void hideProgress() {
+        for (int i = 0; i <= 1; i++) {
+            btnList.get(i).setEnabled(true);
+        }
         progressBar.setVisibility(View.INVISIBLE);
     }
 

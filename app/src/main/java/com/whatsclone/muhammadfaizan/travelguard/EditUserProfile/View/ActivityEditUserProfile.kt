@@ -50,6 +50,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
                 this.finish()
             }
             R.id.btn_save -> {
+                v.isEnabled = false
                 progressBar.visibility = View.VISIBLE
                 presenter.onSaveClicked(uri, edtUserName.text.toString())
             }
@@ -89,6 +90,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
 
     override fun hideProgress() {
         progressBar.visibility = View.INVISIBLE
+        btnSave.isEnabled = true
     }
 
     override fun onStart() {

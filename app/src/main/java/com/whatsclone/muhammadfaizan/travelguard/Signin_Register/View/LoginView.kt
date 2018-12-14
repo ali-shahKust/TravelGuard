@@ -46,8 +46,10 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v!!.id == R.id.btnSignin) {
-            iLoginPresenter.onLoginInitiated(edtUsername.text.toString(), edtPass.text.toString(), null)
+            btnSignin.isEnabled = false
+            btnRegister.isEnabled = false
             progressBar.visibility = View.VISIBLE
+            iLoginPresenter.onLoginInitiated(edtUsername.text.toString(), edtPass.text.toString(), null)
         } else {
             startActivity(Intent(this@LoginView, RegistrationActivity::class.java))
             this@LoginView.finish()
@@ -60,7 +62,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
             iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
             hideProgress()
-            Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(this, "LOL Detected", Toast.LENGTH_SHORT, true).show()
         }
     }
 
@@ -73,6 +75,8 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
 
     override fun hideProgress() {
         progressBar.visibility = View.INVISIBLE
+        btnSignin.isEnabled = true
+        btnRegister.isEnabled = true
     }
 
     override fun onStart() {
