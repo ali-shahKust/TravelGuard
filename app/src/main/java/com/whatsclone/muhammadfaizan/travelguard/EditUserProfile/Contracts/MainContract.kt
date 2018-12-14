@@ -8,6 +8,7 @@ interface MainContract {
     }
 
     interface IView {
+        fun hideProgress()
         fun onSaveClickResult(result: Boolean)
         fun onFirebaseResult(result : Boolean, message : String)
     }

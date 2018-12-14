@@ -51,14 +51,17 @@ class Presenter constructor(view: MainContract.IView) : MainContract.IPresenter 
                                     if (task.isSuccessful) {
                                         view.onFirebaseResult(true, "success")
                                     } else {
+                                        view.hideProgress()
                                         view.onFirebaseResult(false, task.exception!!.message.toString())
                                     }
                                 }
                     } else {
+                        view.hideProgress()
                         view.onFirebaseResult(false, task.exception!!.message.toString())
                     }
                 }
             } else {
+                view.hideProgress()
                 view.onFirebaseResult(false, task.exception!!.message!!.toString())
             }
         }

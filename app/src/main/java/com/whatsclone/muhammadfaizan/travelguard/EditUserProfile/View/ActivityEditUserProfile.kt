@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.Contracts.MainContract
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.Presenter.Presenter
@@ -21,6 +22,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
     private lateinit var imgUser: CircleImageView
     private lateinit var btnSave: Button
     private lateinit var btnLater: Button
+    private lateinit var progressBar: ProgressBar
     private lateinit var presenter: MainContract.IPresenter
     private var uri: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
         imgUser = findViewById(R.id.edt_img_user)
         btnSave = findViewById(R.id.btn_save)
         btnLater = findViewById(R.id.btn_later)
+        progressBar.visibility = View.INVISIBLE
         presenter = Presenter(this@ActivityEditUserProfile)
     }
 
@@ -47,6 +50,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
                 this.finish()
             }
             R.id.btn_save -> {
+                progressBar.visibility = View.VISIBLE
                 presenter.onSaveClicked(uri, edtUserName.text.toString())
             }
             R.id.edt_img_user -> {
@@ -61,6 +65,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
         if (result) {
             presenter.saveUserToFB()
         } else {
+            hideProgress()
             Toasty.error(this, "Invalid User image or name", Toast.LENGTH_SHORT, true).show()
         }
     }
@@ -70,6 +75,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
             startActivity(Intent(this@ActivityEditUserProfile, MainActivity::class.java))
             this@ActivityEditUserProfile.finish()
         } else {
+            hideProgress()
             Toasty.error(this@ActivityEditUserProfile, message, Toast.LENGTH_LONG, true).show()
         }
     }
@@ -79,5 +85,14 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
             imgUser.setImageURI(data.data)
             uri = data.data.toString()
         }
+    }
+
+    override fun hideProgress() {
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    override fun onStart() {
+        super.onStart()
+        progressBar.visibility = View.INVISIBLE
     }
 }

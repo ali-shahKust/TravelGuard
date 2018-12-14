@@ -41,6 +41,7 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
 
     @OnClick({R.id.btnRegister, R.id.btnGoBack})
     void buttonListener(View v) {
+        progressBar.setVisibility(View.VISIBLE);
         if (v.getId() == R.id.btnRegister) {
             loginPresenter.onLoginInitiated(edtList.get(0).getText().toString(), edtList.get(1).getText().toString(), edtList.get(2).getText().toString());
         } else {
@@ -56,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
             Toasty.success(this, "Valid Entry Detected", Toast.LENGTH_SHORT, true).show();
             loginPresenter.authenticateUser("register", edtList.get(0).getText().toString(), edtList.get(1).getText().toString());
         } else {
+            progressBar.setVisibility(View.INVISIBLE);
             Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show();
         }
     }
