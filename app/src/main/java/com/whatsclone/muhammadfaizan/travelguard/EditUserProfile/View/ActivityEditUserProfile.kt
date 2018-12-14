@@ -39,7 +39,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
         imgUser = findViewById(R.id.edt_img_user)
         btnSave = findViewById(R.id.btn_save)
         btnLater = findViewById(R.id.btn_later)
-        progressBar.visibility = View.INVISIBLE
+        progressBar = findViewById(R.id.edt_user_profile_progress)
         presenter = Presenter(this@ActivityEditUserProfile)
     }
 

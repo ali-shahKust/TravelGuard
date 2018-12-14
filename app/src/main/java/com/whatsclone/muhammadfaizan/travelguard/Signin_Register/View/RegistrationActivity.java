@@ -41,8 +41,8 @@ public class RegistrationActivity extends AppCompatActivity implements ILoginVie
 
     @OnClick({R.id.btnRegister, R.id.btnGoBack})
     void buttonListener(View v) {
-        progressBar.setVisibility(View.VISIBLE);
         if (v.getId() == R.id.btnRegister) {
+            progressBar.setVisibility(View.VISIBLE);
             loginPresenter.onLoginInitiated(edtList.get(0).getText().toString(), edtList.get(1).getText().toString(), edtList.get(2).getText().toString());
         } else {
             startActivity(new Intent(RegistrationActivity.this, LoginView.class));
