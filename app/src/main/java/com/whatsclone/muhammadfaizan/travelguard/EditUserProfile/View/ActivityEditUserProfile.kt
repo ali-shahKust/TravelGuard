@@ -93,7 +93,7 @@ class ActivityEditUserProfile : AppCompatActivity(), MainContract.IView, View.On
     override fun hideProgress() {
         progressBar.visibility = View.INVISIBLE
         btnSave.isEnabled = true
-        btnRegister.isEnabled = true
+        btnLater.isEnabled = true
     }
 
     override fun onStart() {
