@@ -46,6 +46,7 @@ class Presenter constructor(view: MainContract.IView) : MainContract.IPresenter 
                         var map = HashMap<String, String>()
                         map["user_name"] = this.userName
                         map["image_url"] = FirebaseAuth.getInstance().currentUser!!.photoUrl.toString()
+                        map["uid"] = FirebaseAuth.getInstance().uid!!
                         FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
                                 .child(FirebaseAuth.getInstance().uid.toString()).updateChildren(map.toMap()).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
