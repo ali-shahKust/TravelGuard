@@ -55,7 +55,7 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
         map["image_url"] = FirebaseAuth.getInstance().currentUser!!.photoUrl.toString()
         map["user_name"] = FirebaseAuth.getInstance().currentUser!!.displayName.toString()
         FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
-                .child(uid).child("Requests").setValue(map).addOnCompleteListener { task ->
+                .child(uid).child("Requests").child(FirebaseAuth.getInstance().uid!!.toString()).setValue(map).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toasty.success(context, "Request sent", Toast.LENGTH_SHORT, true).show()
                     } else {
