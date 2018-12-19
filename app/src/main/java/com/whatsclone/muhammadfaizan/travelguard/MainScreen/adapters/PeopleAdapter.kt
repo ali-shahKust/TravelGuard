@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.models.PeopleModel
 import com.whatsclone.muhammadfaizan.travelguard.R
@@ -38,6 +38,9 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
 
     override fun onBindViewHolder(p0: PeopleHolder, p1: Int) {
         var obj: PeopleModel = userList.get(p1)
+        var ref = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(obj.uid)
+                .child("Requests").child(FirebaseAuth.getInstance().uid!!)
+        checkRef(ref, p0)
         if (obj.uid == FirebaseAuth.getInstance().uid!!) {
             p0.layout.maxHeight = 0
         }
@@ -62,6 +65,20 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
                         Toasty.error(context, task.exception!!.message.toString(), Toast.LENGTH_LONG, true).show()
                     }
                 }
+    }
+
+    private fun checkRef(ref: DatabaseReference, p0 : PeopleHolder) {
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p1: DataSnapshot) {
+                if (p1.value != null) {
+                    p0.img_add.visibility = View.INVISIBLE
+                }
+            }
+        })
     }
 
     inner class PeopleHolder(view: View) : RecyclerView.ViewHolder(view) {
