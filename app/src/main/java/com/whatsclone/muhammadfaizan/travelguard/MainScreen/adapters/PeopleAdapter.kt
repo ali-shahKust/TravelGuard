@@ -43,7 +43,7 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
         }
         p0.txt_user_email.text = obj.email
         p0.txt_user_name.text = obj.user_name
-        p0.img_user.setOnClickListener {
+        p0.img_add.setOnClickListener {
             addPerson(obj.uid)
         }
         Picasso.get().load(obj.image_url).into(p0.img_user)
