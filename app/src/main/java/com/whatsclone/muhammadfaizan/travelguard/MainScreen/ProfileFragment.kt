@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile
 import com.whatsclone.muhammadfaizan.travelguard.R
+import com.whatsclone.muhammadfaizan.travelguard.UserRequests.View.ActivityRequests
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileFragment : Fragment() {
@@ -40,6 +41,11 @@ class ProfileFragment : Fragment() {
         txtUserName = view.findViewById(R.id.txtUserName)
         txtUserEmail = view.findViewById(R.id.txtUserEmail)
         imgEdit = view.findViewById(R.id.imgEdit)
+
+        imgRequests.setOnClickListener {
+            startActivity(Intent(view.context, ActivityRequests::class.java))
+            activity!!.finish()
+        }
     }
 
     private fun loadData(view: View) {

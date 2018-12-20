@@ -3,9 +3,11 @@ package com.whatsclone.muhammadfaizan.travelguard.UserRequests.Controller;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.whatsclone.muhammadfaizan.travelguard.R;
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.Model.RequestModel;
 
 import java.util.List;
@@ -23,7 +25,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
     @NonNull
     @Override
     public RequestHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        View view = inflater.inflate(R.layout.request_row_design, viewGroup, false);
+        return new RequestHolder(view);
     }
 
     @Override
@@ -33,7 +37,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
 
     @Override
     public int getItemCount() {
-        return 0;
+        return userList.size();
     }
 
     @Override
