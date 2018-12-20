@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainScreen.MainActivity" />
-        <activity android:name=".EditUserProfile.View.ActivityEditUserProfile"></activity>
+        <activity android:name=".EditUserProfile.View.ActivityEditUserProfile" />
+        <activity android:name=".UserRequests.View.ActivityRequests"></activity>
     </application>
 
 </manifest>

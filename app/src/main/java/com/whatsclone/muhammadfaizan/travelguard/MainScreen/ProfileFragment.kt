@@ -22,6 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 class ProfileFragment : Fragment() {
 
     lateinit var imgProfile: CircleImageView
+    lateinit var imgRequests: ImageView
     lateinit var txtUserName: TextView
     lateinit var txtUserEmail: TextView
     lateinit var imgEdit: ImageView
@@ -35,6 +36,7 @@ class ProfileFragment : Fragment() {
 
     private fun initViews(view: View) {
         imgProfile = view.findViewById(R.id.imgProfilePicture)
+        imgRequests = view.findViewById(R.id.imgRequests)
         txtUserName = view.findViewById(R.id.txtUserName)
         txtUserEmail = view.findViewById(R.id.txtUserEmail)
         imgEdit = view.findViewById(R.id.imgEdit)
