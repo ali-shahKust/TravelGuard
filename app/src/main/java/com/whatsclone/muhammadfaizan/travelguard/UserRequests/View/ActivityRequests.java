@@ -1,5 +1,6 @@
 package com.whatsclone.muhammadfaizan.travelguard.UserRequests.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity;
 import com.whatsclone.muhammadfaizan.travelguard.R;
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.Controller.RequestAdapter;
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.Model.RequestModel;
@@ -74,5 +76,12 @@ public class ActivityRequests extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ActivityRequests.this, MainActivity.class));
+        this.finish();
     }
 }
