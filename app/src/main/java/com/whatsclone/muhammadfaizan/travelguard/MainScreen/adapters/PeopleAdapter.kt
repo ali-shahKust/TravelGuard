@@ -40,7 +40,12 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
         var obj: PeopleModel = userList.get(p1)
         var ref = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(obj.uid)
                 .child("Requests").child(FirebaseAuth.getInstance().uid!!)
-        checkRef(ref, p0)
+
+        var ref2 = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
+                .child("Friends").child(FirebaseAuth.getInstance().uid!!)
+
+
+        checkRef(ref, ref2, p0)
         if (obj.uid == FirebaseAuth.getInstance().uid!!) {
             p0.layout.maxHeight = 0
         }
@@ -68,8 +73,22 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
                 }
     }
 
-    private fun checkRef(ref: DatabaseReference, p0 : PeopleHolder) {
-        ref.addValueEventListener(object : ValueEventListener {
+    private fun checkRef(ref: DatabaseReference, ref2: DatabaseReference, p0: PeopleHolder) {
+
+        ref2.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p1: DataSnapshot) {
+                if (p1.value != null) {
+                    p0.img_add.visibility = View.INVISIBLE
+                }
+            }
+        })
+
+        FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
+                .child("Friends").ref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
 
             }
