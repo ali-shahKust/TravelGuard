@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import com.whatsclone.muhammadfaizan.travelguard.R;
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.Model.RequestModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -50,7 +51,33 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
         holder.imgAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                HashMap<String, String> map = new HashMap<>();
+                map.put("email", model.email);
+                map.put("uid", model.uid);
+                map.put("image_url", model.image_url);
+                map.put("user_name", model.user_name);
+                FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .child("Friends").child(model.uid).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().getUid())
+                                    .child("Requests").child(model.uid).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toasty.success(context, "Added to friends list", Toast.LENGTH_SHORT, true).show();
+                                        holder.layout.setMaxHeight(0);
+                                    } else {
+                                        Toasty.error(context, task.getException().getMessage(), Toast.LENGTH_LONG, true).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toasty.error(context, task.getException().getMessage(), Toast.LENGTH_LONG, true).show();
+                        }
+                    }
+                });
             }
         });
 
@@ -61,12 +88,16 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                         .child(FirebaseAuth.getInstance().getUid())
                         .child("Requests").child(model.uid).setValue(null)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toasty.info(context, "Requests deleted", Toast.LENGTH_SHORT, true).show();
-                        holder.layout.setMaxHeight(0);
-                    }
-                });
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toasty.info(context, "Requests deleted", Toast.LENGTH_SHORT, true).show();
+                                    holder.layout.setMaxHeight(0);
+                                } else {
+                                    Toasty.error(context, task.getException().getMessage().toString(), Toast.LENGTH_LONG, true).show();
+                                }
+                            }
+                        });
             }
         });
         Picasso.get().load(model.image_url).into(holder.imgRequest);
