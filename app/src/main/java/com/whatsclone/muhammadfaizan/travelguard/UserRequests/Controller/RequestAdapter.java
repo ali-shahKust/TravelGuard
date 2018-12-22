@@ -40,6 +40,19 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
         RequestModel model = userList.get(position);
         holder.requestName.setText(model.user_name);
         holder.requestEmail.setText(model.email);
+        holder.imgAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.imgReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         Picasso.get().load(model.image_url).into(holder.imgRequest);
     }
 

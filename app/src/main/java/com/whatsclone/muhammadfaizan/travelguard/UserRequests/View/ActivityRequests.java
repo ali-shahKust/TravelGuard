@@ -63,7 +63,8 @@ public class ActivityRequests extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                listData.remove(dataSnapshot.getValue());
+                adapter.notifyDataSetChanged();
             }
 
             @Override
