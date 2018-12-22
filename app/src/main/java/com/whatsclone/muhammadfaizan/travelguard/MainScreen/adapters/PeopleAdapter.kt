@@ -57,6 +57,7 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
         map["email"] = FirebaseAuth.getInstance().currentUser!!.email.toString()
         map["image_url"] = FirebaseAuth.getInstance().currentUser!!.photoUrl.toString()
         map["user_name"] = FirebaseAuth.getInstance().currentUser!!.displayName.toString()
+        map["uid"] = FirebaseAuth.getInstance().uid!!
         FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
                 .child(uid).child("Requests").child(FirebaseAuth.getInstance().uid!!.toString()).setValue(map).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
