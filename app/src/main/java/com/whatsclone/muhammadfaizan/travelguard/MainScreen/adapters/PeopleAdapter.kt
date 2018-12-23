@@ -102,10 +102,10 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
     }
 
     inner class PeopleHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var txt_user_name: TextView = view.findViewById(R.id.txt_name)
-        var txt_user_email: TextView = view.findViewById(R.id.txt_email)
-        var img_user: CircleImageView = view.findViewById(R.id.img_request)
-        var img_add: ImageView = view.findViewById(R.id.img_add_person)
+        var txt_user_name: TextView = view.findViewById(R.id.txt_friend_name)
+        var txt_user_email: TextView = view.findViewById(R.id.txt_friend_email)
+        var img_user: CircleImageView = view.findViewById(R.id.img_friend)
+        var img_add: ImageView = view.findViewById(R.id.img_friend_location)
         var layout: ConstraintLayout = view.findViewById(R.id.people_row_layout)
     }
 

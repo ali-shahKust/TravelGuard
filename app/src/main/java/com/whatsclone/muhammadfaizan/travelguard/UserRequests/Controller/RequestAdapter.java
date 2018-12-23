@@ -121,9 +121,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
 
         public RequestHolder(@NonNull View itemView) {
             super(itemView);
-            imgRequest = itemView.findViewById(R.id.img_request);
-            requestName = itemView.findViewById(R.id.txt_name);
-            requestEmail = itemView.findViewById(R.id.txt_email);
+            imgRequest = itemView.findViewById(R.id.img_friend);
+            requestName = itemView.findViewById(R.id.txt_friend_name);
+            requestEmail = itemView.findViewById(R.id.txt_friend_email);
             imgAccept = itemView.findViewById(R.id.img_accept);
             imgReject = itemView.findViewById(R.id.img_reject);
             layout = itemView.findViewById(R.id.people_row_layout);
