@@ -61,16 +61,22 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
-                            FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().getUid())
-                                    .child("Requests").child(model.uid).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(model.uid).child("Friends")
+                                    .setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toasty.success(context, "Added to friends list", Toast.LENGTH_SHORT, true).show();
-                                        holder.layout.setMaxHeight(0);
-                                    } else {
-                                        Toasty.error(context, task.getException().getMessage(), Toast.LENGTH_LONG, true).show();
-                                    }
+                                    FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
+                                            .child(FirebaseAuth.getInstance().getUid()).child("Requests").child(model.uid).setValue(null)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toasty.success(context, "Added to friends", Toast.LENGTH_SHORT, true).show();
+                                                    } else {
+                                                        Toasty.error(context, task.getException().getMessage(), Toast.LENGTH_SHORT, true).show();
+                                                    }
+                                                }
+                                            });
                                 }
                             });
                         } else {

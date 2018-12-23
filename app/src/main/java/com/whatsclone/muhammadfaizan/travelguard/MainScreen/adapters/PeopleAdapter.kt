@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.models.PeopleModel
 import com.whatsclone.muhammadfaizan.travelguard.R
@@ -38,26 +38,18 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
 
     override fun onBindViewHolder(p0: PeopleHolder, p1: Int) {
         var obj: PeopleModel = userList.get(p1)
-        var ref = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(obj.uid)
-                .child("Requests").child(FirebaseAuth.getInstance().uid!!)
-
-        var ref2 = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
-                .child("Friends").child(FirebaseAuth.getInstance().uid!!)
-
-
-        checkRef(ref, ref2, p0)
         if (obj.uid == FirebaseAuth.getInstance().uid!!) {
             p0.layout.maxHeight = 0
         }
         p0.txt_user_email.text = obj.email
         p0.txt_user_name.text = obj.user_name
         p0.img_add.setOnClickListener {
-            addPerson(obj.uid)
+            addPerson(obj.uid, p0)
         }
         Picasso.get().load(obj.image_url).into(p0.img_user)
     }
 
-    private fun addPerson(uid: String) {
+    private fun addPerson(uid: String, holder: PeopleHolder) {
         var map = HashMap<String, String>()
         map["email"] = FirebaseAuth.getInstance().currentUser!!.email.toString()
         map["image_url"] = FirebaseAuth.getInstance().currentUser!!.photoUrl.toString()
@@ -71,34 +63,7 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
                         Toasty.error(context, task.exception!!.message.toString(), Toast.LENGTH_LONG, true).show()
                     }
                 }
-    }
 
-    private fun checkRef(ref: DatabaseReference, ref2: DatabaseReference, p0: PeopleHolder) {
-
-        ref2.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(p1: DataSnapshot) {
-                if (p1.value != null) {
-                    p0.img_add.visibility = View.INVISIBLE
-                }
-            }
-        })
-
-        FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
-                .child("Friends").ref.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(p1: DataSnapshot) {
-                if (p1.value != null) {
-                    p0.img_add.visibility = View.INVISIBLE
-                }
-            }
-        })
     }
 
     inner class PeopleHolder(view: View) : RecyclerView.ViewHolder(view) {
