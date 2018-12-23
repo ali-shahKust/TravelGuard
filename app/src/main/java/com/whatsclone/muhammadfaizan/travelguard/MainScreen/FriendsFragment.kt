@@ -50,7 +50,7 @@ class FriendsFragment : Fragment() {
                     override fun onChildChanged(p0: DataSnapshot, p1: String?) {}
 
                     override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                        var obj: FriendsModel = p0.value as FriendsModel
+                        var obj: FriendsModel = p0.getValue(FriendsModel::class.java)!!
                         friendsList.add(obj)
                         adapter.notifyDataSetChanged()
                     }
