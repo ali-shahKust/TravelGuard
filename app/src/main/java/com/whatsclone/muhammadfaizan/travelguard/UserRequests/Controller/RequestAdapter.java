@@ -72,6 +72,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         Toasty.success(context, "Added to friends", Toast.LENGTH_SHORT, true).show();
+                                                        holder.layout.setMaxHeight(0);
                                                     } else {
                                                         Toasty.error(context, task.getException().getMessage(), Toast.LENGTH_SHORT, true).show();
                                                     }
