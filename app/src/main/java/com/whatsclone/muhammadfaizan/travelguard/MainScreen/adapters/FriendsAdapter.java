@@ -16,7 +16,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsH
     private List<FriendsModel> friendsList;
     private Context context;
 
-    FriendsAdapter(List<FriendsModel> friendsList, Context context) {
+    public FriendsAdapter(List<FriendsModel> friendsList, Context context) {
         this.context = context;
         this.friendsList = friendsList;
     }
