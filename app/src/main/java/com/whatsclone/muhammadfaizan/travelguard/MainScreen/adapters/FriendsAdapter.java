@@ -1,6 +1,8 @@
 package com.whatsclone.muhammadfaizan.travelguard.MainScreen.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.whatsclone.muhammadfaizan.travelguard.FriendLocation.FriendsLocation;
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.models.FriendsModel;
 import com.whatsclone.muhammadfaizan.travelguard.R;
 
@@ -41,6 +44,13 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsH
         FriendsModel model = friendsList.get(position);
         holder.txtFriendsName.setText(model.user_name);
         holder.txtFriendEmail.setText(model.email);
+        holder.imgLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, FriendsLocation.class));
+                ((Activity)context).finish();
+            }
+        });
         Picasso.get().load(model.image_url).into(holder.imgFriend);
     }
 
