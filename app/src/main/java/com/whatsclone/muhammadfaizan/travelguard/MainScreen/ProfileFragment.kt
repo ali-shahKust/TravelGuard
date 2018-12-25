@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile
+import com.whatsclone.muhammadfaizan.travelguard.LocationSettingsActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View.LoginView
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.View.ActivityRequests
@@ -26,12 +27,13 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileFragment : Fragment() {
 
-    lateinit var imgProfile: CircleImageView
-    lateinit var imgRequests: ImageView
-    lateinit var imgSignout: ImageView
-    lateinit var txtUserName: TextView
-    lateinit var txtUserEmail: TextView
-    lateinit var imgEdit: ImageView
+    private lateinit var imgProfile: CircleImageView
+    private lateinit var imgRequests: ImageView
+    private lateinit var imgSignout: ImageView
+    private lateinit var imgSettings : ImageView
+    private lateinit var txtUserName: TextView
+    private lateinit var txtUserEmail: TextView
+    private lateinit var imgEdit: ImageView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -44,9 +46,15 @@ class ProfileFragment : Fragment() {
         imgProfile = view.findViewById(R.id.imgProfilePicture)
         imgRequests = view.findViewById(R.id.imgRequests)
         imgSignout = view.findViewById(R.id.img_signout)
+        imgSettings = view.findViewById(R.id.img_settings)
         txtUserName = view.findViewById(R.id.txtUserName)
         txtUserEmail = view.findViewById(R.id.txtUserEmail)
         imgEdit = view.findViewById(R.id.imgEdit)
+
+        imgSettings.setOnClickListener {
+            startActivity(Intent(view.context, LocationSettingsActivity::class.java))
+            activity!!.finish()
+        }
 
         imgRequests.setOnClickListener {
             startActivity(Intent(view.context, ActivityRequests::class.java))

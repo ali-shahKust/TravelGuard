@@ -24,11 +24,7 @@ class LocationSettingsActivity : AppCompatActivity() {
         checkPerm()
 
         locationCheckBox.setOnClickListener { view ->
-            if (!perm) {
-                locationCheckBox.isEnabled = false
-            } else {
-                setState()
-            }
+            setState()
 
         }
     }
@@ -56,6 +52,7 @@ class LocationSettingsActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this@LocationSettingsActivity, permArray[0].toString()) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this@LocationSettingsActivity, permArray[1].toString()) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this@LocationSettingsActivity, permArray, 69)
+            locationCheckBox.isEnabled = false
         }
     }
 
@@ -76,6 +73,7 @@ class LocationSettingsActivity : AppCompatActivity() {
                     return
                 } else {
                     perm = true
+                    locationCheckBox.isEnabled = true
                 }
             }
         }
