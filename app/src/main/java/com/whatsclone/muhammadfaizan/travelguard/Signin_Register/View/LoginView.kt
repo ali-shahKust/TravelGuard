@@ -62,7 +62,7 @@ class LoginView : AppCompatActivity(), ILoginView, View.OnClickListener {
             iLoginPresenter.authenticateUser("signin", edtUsername.text.toString(), edtPass.text.toString())
         } else {
             hideProgress()
-            Toasty.error(this, "LOL Detected", Toast.LENGTH_SHORT, true).show()
+            Toasty.error(this, "Invalid Credentials Entry Detected", Toast.LENGTH_SHORT, true).show()
         }
     }
 

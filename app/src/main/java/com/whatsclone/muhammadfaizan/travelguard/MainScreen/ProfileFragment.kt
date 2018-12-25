@@ -4,7 +4,6 @@ package com.whatsclone.muhammadfaizan.travelguard.MainScreen
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import com.whatsclone.muhammadfaizan.travelguard.EditUserProfile.View.ActivityEditUserProfile
-import com.whatsclone.muhammadfaizan.travelguard.LocationSettingsActivity
+import com.whatsclone.muhammadfaizan.travelguard.LocationSettings.LocationSettingsActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
 import com.whatsclone.muhammadfaizan.travelguard.Signin_Register.View.LoginView
 import com.whatsclone.muhammadfaizan.travelguard.UserRequests.View.ActivityRequests

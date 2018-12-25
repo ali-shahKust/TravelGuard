@@ -51,7 +51,7 @@
         <activity
             android:name=".FriendLocation.FriendsLocation"
             android:label="@string/title_activity_friends_location" />
-        <activity android:name=".LocationSettingsActivity"></activity>
+        <activity android:name=".LocationSettings.LocationSettingsActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.whatsclone.muhammadfaizan.travelguard
+package com.whatsclone.muhammadfaizan.travelguard.LocationSettings
 
 import android.content.DialogInterface
 import android.content.pm.PackageManager
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.CheckBox
 import android.widget.Toast
+import com.whatsclone.muhammadfaizan.travelguard.R
 
 class LocationSettingsActivity : AppCompatActivity() {
 
