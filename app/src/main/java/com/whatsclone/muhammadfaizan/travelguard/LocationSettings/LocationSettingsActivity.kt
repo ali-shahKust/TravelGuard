@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.CheckBox
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
 import es.dmoral.toasty.Toasty
@@ -25,6 +28,8 @@ class LocationSettingsActivity : AppCompatActivity() {
     private lateinit var locationCheckBox: CheckBox
     private var perm = false
     private lateinit var pref: SharedPreferences
+    private lateinit var ref: DatabaseReference
+    private lateinit var map : HashMap<String, Boolean>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,8 @@ class LocationSettingsActivity : AppCompatActivity() {
     private fun initViews() {
         mToolbar = findViewById(R.id.mToolbar)
         locationCheckBox = findViewById(R.id.location_check_box)
+        ref = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
+        map = HashMap<String, Boolean>()
         pref = getSharedPreferences("location_service", Context.MODE_PRIVATE)
 
         mToolbar.title = "Location Settings"
@@ -70,6 +77,8 @@ class LocationSettingsActivity : AppCompatActivity() {
             editor.putBoolean("is_loc_running", true)
             editor.apply()
             startService(Intent(this@LocationSettingsActivity, LocationService::class.java))
+            map["location_enabled"] = true
+            ref.updateChildren(map as Map<String, Boolean>)
             Toasty.success(this@LocationSettingsActivity, "Your friends can now see your location", Toast.LENGTH_SHORT, true).show()
         } else {
             var editor: SharedPreferences.Editor = pref.edit()
@@ -77,6 +86,8 @@ class LocationSettingsActivity : AppCompatActivity() {
             editor.apply()
             var intent = Intent(this@LocationSettingsActivity, LocationService::class.java)
             stopService(intent)
+            map["location_enabled"] = false
+            ref.updateChildren(map as Map<String, Boolean>)
             Toasty.error(this@LocationSettingsActivity, "Your friends can no longer see your location", Toast.LENGTH_SHORT, true).show()
         }
     }

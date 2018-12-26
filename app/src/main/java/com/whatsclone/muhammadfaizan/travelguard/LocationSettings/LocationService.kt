@@ -15,10 +15,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class LocationService : Service(){
+class LocationService : Service() {
     private lateinit var locationListener: LocationListener
     private lateinit var locationManager: LocationManager
-    lateinit var ref : DatabaseReference
+    lateinit var ref: DatabaseReference
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -29,7 +29,7 @@ class LocationService : Service(){
         super.onCreate()
         ref = FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance().uid!!)
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        locationListener = object : LocationListener{
+        locationListener = object : LocationListener {
             override fun onLocationChanged(location: Location?) {
                 Log.i("dxdiag", location!!.latitude.toString())
                 var map = HashMap<String, String>()
@@ -62,5 +62,4 @@ class LocationService : Service(){
         super.onDestroy()
         locationManager.removeUpdates(locationListener)
     }
-
 }
