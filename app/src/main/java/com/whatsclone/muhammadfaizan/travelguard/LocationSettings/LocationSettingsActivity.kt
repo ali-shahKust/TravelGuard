@@ -1,7 +1,9 @@
 package com.whatsclone.muhammadfaizan.travelguard.LocationSettings
 
 import android.Manifest
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -10,7 +12,6 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.CheckBox
-import android.widget.Toast
 import com.whatsclone.muhammadfaizan.travelguard.R
 
 class LocationSettingsActivity : AppCompatActivity() {
@@ -18,11 +19,13 @@ class LocationSettingsActivity : AppCompatActivity() {
     private lateinit var mToolbar: Toolbar
     private lateinit var locationCheckBox: CheckBox
     private var perm = false
+    private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_settings)
         initViews()
+        checkService()
         checkPerm()
 
         locationCheckBox.setOnClickListener { view ->
@@ -31,18 +34,33 @@ class LocationSettingsActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkService() {
+        if (pref.getBoolean("is_loc_running", false)) {
+            locationCheckBox.isChecked = true
+        } else {
+            locationCheckBox.isChecked = false
+        }
+    }
+
     private fun initViews() {
         mToolbar = findViewById(R.id.mToolbar)
         locationCheckBox = findViewById(R.id.location_check_box)
+        pref = getSharedPreferences("location_service", Context.MODE_PRIVATE)
+
+        mToolbar.title = "Location Settings"
+
     }
 
     private fun setState() {
         if (locationCheckBox.isChecked) {
-            //TODO : start location service
-            Toast.makeText(this@LocationSettingsActivity, "Checked", Toast.LENGTH_SHORT).show()
+            var editor = pref.edit()
+            editor.putBoolean("is_loc_running", true)
+            editor.apply()
+
         } else {
-            //TODO : Stop location service
-            Toast.makeText(this@LocationSettingsActivity, "Un_Checked", Toast.LENGTH_SHORT).show()
+            var editor: SharedPreferences.Editor = pref.edit()
+            editor.putBoolean("is_loc_running", false)
+            editor.apply()
         }
     }
 
