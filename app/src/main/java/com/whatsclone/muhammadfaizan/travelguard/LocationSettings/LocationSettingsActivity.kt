@@ -3,8 +3,10 @@ package com.whatsclone.muhammadfaizan.travelguard.LocationSettings
 import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -12,7 +14,10 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.CheckBox
+import android.widget.Toast
+import com.whatsclone.muhammadfaizan.travelguard.MainScreen.MainActivity
 import com.whatsclone.muhammadfaizan.travelguard.R
+import es.dmoral.toasty.Toasty
 
 class LocationSettingsActivity : AppCompatActivity() {
 
@@ -48,6 +53,14 @@ class LocationSettingsActivity : AppCompatActivity() {
         pref = getSharedPreferences("location_service", Context.MODE_PRIVATE)
 
         mToolbar.title = "Location Settings"
+        mToolbar.subtitle = "Enable or disable location service"
+        mToolbar.setNavigationIcon(R.drawable.ic_go_back)
+        mToolbar.setTitleTextColor(Color.WHITE)
+        mToolbar.setSubtitleTextColor(Color.WHITE)
+        mToolbar.setNavigationOnClickListener {
+            startActivity(Intent(this@LocationSettingsActivity, MainActivity::class.java))
+            this@LocationSettingsActivity.finish()
+        }
 
     }
 
@@ -56,11 +69,15 @@ class LocationSettingsActivity : AppCompatActivity() {
             var editor = pref.edit()
             editor.putBoolean("is_loc_running", true)
             editor.apply()
-
+            startService(Intent(this@LocationSettingsActivity, LocationService::class.java))
+            Toasty.success(this@LocationSettingsActivity, "Your friends can now see your location", Toast.LENGTH_SHORT, true).show()
         } else {
             var editor: SharedPreferences.Editor = pref.edit()
             editor.putBoolean("is_loc_running", false)
             editor.apply()
+            var intent = Intent(this@LocationSettingsActivity, LocationService::class.java)
+            stopService(intent)
+            Toasty.error(this@LocationSettingsActivity, "Your friends can no longer see your location", Toast.LENGTH_SHORT, true).show()
         }
     }
 
@@ -97,5 +114,11 @@ class LocationSettingsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this@LocationSettingsActivity, MainActivity::class.java))
+        this@LocationSettingsActivity.finish()
     }
 }
