@@ -1,5 +1,6 @@
 package com.whatsclone.muhammadfaizan.travelguard.LocationSettings
 
+import android.Manifest
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -47,8 +48,8 @@ class LocationSettingsActivity : AppCompatActivity() {
 
     private fun checkPerm() {
         var permArray = arrayOfNulls<String>(2)
-        permArray[0] = android.Manifest.permission.ACCESS_COARSE_LOCATION
-        permArray[1] = android.Manifest.permission.ACCESS_FINE_LOCATION
+        permArray[0] = Manifest.permission.ACCESS_COARSE_LOCATION
+        permArray[1] = Manifest.permission.ACCESS_FINE_LOCATION
 
         if (ContextCompat.checkSelfPermission(this@LocationSettingsActivity, permArray[0].toString()) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this@LocationSettingsActivity, permArray[1].toString()) != PackageManager.PERMISSION_GRANTED) {
