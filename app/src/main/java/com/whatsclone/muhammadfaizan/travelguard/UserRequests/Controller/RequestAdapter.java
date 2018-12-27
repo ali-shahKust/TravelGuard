@@ -48,6 +48,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
         RequestModel model = userList.get(position);
         holder.requestName.setText(model.user_name);
         holder.requestEmail.setText(model.email);
+
+
         holder.imgAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +62,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                         .child("Friends").child(model.uid).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
+                            HashMap<String, String> mMap = new HashMap<>();
+                            mMap.put("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                            mMap.put("uid", FirebaseAuth.getInstance().getUid());
+                            mMap.put("image_url", FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
+                            mMap.put("user_name", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
                             FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(model.uid).child("Friends")
-                                    .setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    .setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
