@@ -47,7 +47,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsH
         holder.imgLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, FriendsLocation.class));
+                Intent intent = new Intent(context, FriendsLocation.class);
+                intent.putExtra("key", model.uid);
+                context.startActivity(intent);
                 ((Activity)context).finish();
             }
         });
