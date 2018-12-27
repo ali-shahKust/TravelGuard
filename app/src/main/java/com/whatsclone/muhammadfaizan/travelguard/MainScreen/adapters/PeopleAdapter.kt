@@ -46,7 +46,11 @@ class PeopleAdapter constructor(context: Context, userList: List<PeopleModel>) :
         p0.img_add.setOnClickListener {
             addPerson(obj.uid, p0)
         }
-        Picasso.get().load(obj.image_url).into(p0.img_user)
+        try{
+            Picasso.get().load(obj.image_url).into(p0.img_user)
+        } catch (exc : Exception){
+            
+        }
     }
 
     private fun addPerson(uid: String, holder: PeopleHolder) {

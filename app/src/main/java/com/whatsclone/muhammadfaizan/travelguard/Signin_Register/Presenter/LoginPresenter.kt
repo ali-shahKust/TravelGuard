@@ -37,9 +37,10 @@ class LoginPresenter constructor(iLoginView: ILoginView, context: Context) : ILo
         if (flag == "register") {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var map = HashMap<String, String>()
+                    var map = HashMap<String, Any>()
                     map["email"] = email
                     map["password"] = pass
+                    map["location_enabled"] = false
                     FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(FirebaseAuth.getInstance()!!.uid.toString()).setValue(map).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             iLoginView.firebaseResponse("success")

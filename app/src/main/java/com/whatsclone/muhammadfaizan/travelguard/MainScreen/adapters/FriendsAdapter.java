@@ -3,6 +3,7 @@ package com.whatsclone.muhammadfaizan.travelguard.MainScreen.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,7 +49,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsH
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, FriendsLocation.class);
-                intent.putExtra("key", model.uid);
+                Bundle bundle = new Bundle();
+                bundle.putString("uid", model.uid);
+                intent.putExtras(bundle);
                 context.startActivity(intent);
                 ((Activity)context).finish();
             }

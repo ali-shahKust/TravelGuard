@@ -70,7 +70,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                             mMap.put("user_name", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
                             FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users").child(model.uid).child("Friends")
-                                    .setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    .child(FirebaseAuth.getInstance().getUid()).setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     FirebaseDatabase.getInstance().getReference("TravelGuard").child("Users")
