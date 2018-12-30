@@ -70,25 +70,30 @@ class FriendsLocation : AppCompatActivity(), OnMapReadyCallback {
                     var imgReq = ImageRequest(img_url
                             , Response.Listener { bitmap ->
                         bmp = bitmap
-                        mManager = ClusterManager<ClusterMarker>(this@FriendsLocation, mMap)
-                        mRenderer = MyClusterManagerRenderer(this@FriendsLocation, mMap, mManager as ClusterManager<ClusterMarker>)
-                        mManager.renderer = mRenderer
-                        var marker: ClusterMarker = ClusterMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String,
-                                "Current location", bmp)
-                        mManager.addItem(marker)
-                        mManager.cluster()
-                        moveCamera(lat, lng)
+                        if (location_enabled) {
+                            renderCustomMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String)
+                        }
                     }, 200, 200, null, Response.ErrorListener { Toast.makeText(this@FriendsLocation, "Something went wrong", Toast.LENGTH_SHORT).show() })
                     reqQueue.add(imgReq)
                 } else {
-                    moveCamera(lat, lng)
+                    renderCustomMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String)
                 }
             }
         })
     }
 
-    private fun moveCamera(lat: String, lng: String) {
-        var ltlng: LatLng = LatLng(lat.toDouble(), lng.toDouble())
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(ltlng))
+    private fun renderCustomMarker(position : LatLng, userName : String){
+        mManager = ClusterManager<ClusterMarker>(this@FriendsLocation, mMap)
+        mRenderer = MyClusterManagerRenderer(this@FriendsLocation, mMap, mManager as ClusterManager<ClusterMarker>)
+        mManager.renderer = mRenderer
+        var marker: ClusterMarker = ClusterMarker(position, userName,
+                "Current location", bmp)
+        mManager.addItem(marker)
+        mManager.cluster()
+        moveCamera(position)
+    }
+
+    private fun moveCamera(position : LatLng) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(position))
     }
 }
