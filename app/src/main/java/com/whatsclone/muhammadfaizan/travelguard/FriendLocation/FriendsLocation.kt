@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -73,7 +74,7 @@ class FriendsLocation : AppCompatActivity(), OnMapReadyCallback {
                         if (location_enabled) {
                             renderCustomMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String)
                         }
-                    }, 200, 200, null, Response.ErrorListener { Toast.makeText(this@FriendsLocation, "Something went wrong", Toast.LENGTH_SHORT).show() })
+                    }, 0, 0,ImageView.ScaleType.CENTER, null, Response.ErrorListener { Toast.makeText(this@FriendsLocation, "Something went wrong", Toast.LENGTH_SHORT).show() })
                     reqQueue.add(imgReq)
                 } else {
                     renderCustomMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String)
