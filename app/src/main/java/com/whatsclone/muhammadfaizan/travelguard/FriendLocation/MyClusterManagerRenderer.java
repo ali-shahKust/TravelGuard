@@ -30,7 +30,7 @@ public class MyClusterManagerRenderer extends DefaultClusterRenderer<ClusterMark
         imageView = new ImageView(context.getApplicationContext());
         width = (int) context.getResources().getDimension(R.dimen.custom_marker_image);
         height = (int) context.getResources().getDimension(R.dimen.custom_marker_image);
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(100, 100));
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(150, 150));
         int padding = (int) context.getResources().getDimension(R.dimen.custom_marker_padding);
         imageView.setPadding(2, 2, 2, 2);
         iconGenerator.setContentView(imageView);
@@ -41,7 +41,7 @@ public class MyClusterManagerRenderer extends DefaultClusterRenderer<ClusterMark
     @Override
     protected void onBeforeClusterItemRendered(ClusterMarker item, MarkerOptions markerOptions) {
 
-        imageView.setImageResource(item.getIconPicture());
+        imageView.setImageBitmap(item.getIconPicture());
         Bitmap icon = iconGenerator.makeIcon();
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon)).title(item.getTitle());
     }

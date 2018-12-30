@@ -74,7 +74,7 @@ class FriendsLocation : AppCompatActivity(), OnMapReadyCallback {
                         mRenderer = MyClusterManagerRenderer(this@FriendsLocation, mMap, mManager as ClusterManager<ClusterMarker>)
                         mManager.renderer = mRenderer
                         var marker: ClusterMarker = ClusterMarker(LatLng(lat.toDouble(), lng.toDouble()), map["user_name"] as String,
-                                "Current location", R.drawable.app_logo)
+                                "Current location", bmp)
                         mManager.addItem(marker)
                         mManager.cluster()
                         moveCamera(lat, lng)
