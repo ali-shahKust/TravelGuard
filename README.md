@@ -1,5 +1,6 @@
 # TravelGuard
 A travel security app using Kotlin , java, firebase and implements MVP architecture
+App lets you know the realtime location of your friends
 Following are screen shots the app:
 
 ![alt text](https://user-images.githubusercontent.com/24224281/50545311-3abe6d80-0c31-11e9-9bdb-d9830a09393c.PNG)
