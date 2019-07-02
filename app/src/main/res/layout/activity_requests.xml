@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".UserRequests.View.ActivityRequests">
+    tools:context="com.kustit.edu.travelguard.UserRequests.View.ActivityRequests">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/request_list"

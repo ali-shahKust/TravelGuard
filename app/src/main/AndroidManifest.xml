@@ -20,15 +20,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".LocationSettings.LocationService"/>
+        <service android:name="com.kustit.edu.travelguard.LocationSettings.LocationService"/>
         <activity
-            android:name=".Signin_Register.View.LoginView"
+            android:name="com.kustit.edu.travelguard.Signin_Register.View.LoginView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Signin_Register.View.RegistrationActivity"
+            android:name="com.kustit.edu.travelguard.Signin_Register.View.RegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashScreen.SplashScreen"
+            android:name="com.kustit.edu.travelguard.SplashScreen.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,9 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainScreen.MainActivity" />
-        <activity android:name=".EditUserProfile.View.ActivityEditUserProfile" />
-        <activity android:name=".UserRequests.View.ActivityRequests" />
+        <activity android:name="com.kustit.edu.travelguard.MainScreen.MainActivity" />
+        <activity android:name="com.kustit.edu.travelguard.EditUserProfile.View.ActivityEditUserProfile" />
+        <activity android:name="com.kustit.edu.travelguard.UserRequests.View.ActivityRequests" />
         <!--<activity android:name=".FriendLocation.FriendsLocationActivity" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -53,9 +53,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".FriendLocation.FriendsLocation"
+            android:name="com.kustit.edu.travelguard.FriendLocation.FriendsLocation"
             android:label="@string/title_activity_friends_location" />
-        <activity android:name=".LocationSettings.LocationSettingsActivity" />
+        <activity android:name="com.kustit.edu.travelguard.LocationSettings.LocationSettingsActivity" />
         <activity android:name="xyz">
 
         </activity>

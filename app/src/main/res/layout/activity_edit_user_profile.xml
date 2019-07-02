@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".EditUserProfile.View.ActivityEditUserProfile">
+    tools:context="com.kustit.edu.travelguard.EditUserProfile.View.ActivityEditUserProfile">
 
     <TextView
         android:id="@+id/textView"

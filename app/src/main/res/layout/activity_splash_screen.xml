@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".SplashScreen.SplashScreen">
+    tools:context="com.kustit.edu.travelguard.SplashScreen.SplashScreen">
 
     <ImageView
         android:id="@+id/imageView"

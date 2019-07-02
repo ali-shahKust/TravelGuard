@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".Signin_Register.View.LoginView">
+    tools:context="com.kustit.edu.travelguard.Signin_Register.View.LoginView">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
