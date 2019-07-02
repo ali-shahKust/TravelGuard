@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -37,7 +39,7 @@
         <activity android:name=".MainScreen.MainActivity" />
         <activity android:name=".EditUserProfile.View.ActivityEditUserProfile" />
         <activity android:name=".UserRequests.View.ActivityRequests" />
-        <activity android:name=".FriendLocation.FriendsLocationActivity" />
+        <!--<activity android:name=".FriendLocation.FriendsLocationActivity" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,7 +56,9 @@
             android:name=".FriendLocation.FriendsLocation"
             android:label="@string/title_activity_friends_location" />
         <activity android:name=".LocationSettings.LocationSettingsActivity" />
-        <activity android:name=".abc"></activity>
+        <activity android:name="xyz">
+
+        </activity>
     </application>
 
 </manifest>
